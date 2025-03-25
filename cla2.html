@@ -1,0 +1,211 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Personalized Gift Finder</title>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
+  <style>
+      body {
+          font-family:'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+          background: url('https://ideas.hallmark.com/wp-content/uploads/2022/12/16252_GW_HacksMC.jpg') no-repeat center center fixed;
+          background-size: cover;
+          margin: 0;
+          padding: 0;
+          color: #290b0b;
+      }
+      .navbar {
+          background-color: #6c5fbd;
+          padding: 15px;
+          text-align: center;
+          box-shadow: 0 2px 4px rgba(0,0,0,0.2);
+      }
+      .navbar a {
+          color: white;
+          text-decoration: none;
+          padding: 10px 20px;
+          margin: 0 10px;
+          font-size: 1.2em;
+          transition: background-color 0.3s ease, transform 0.3s ease;
+          cursor: pointer;
+      }
+      .navbar a:hover {
+          background-color: #646087;
+          transform: scale(1.05);
+          border-radius: 5px;
+      }
+      .home, .about, .contact, .container {
+          background: rgba(255, 255, 255, 0.9);
+          margin: 20px auto;
+          padding: 100px;
+          border-radius: 50px;
+          max-width: 800px;
+          box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+          text-align: center;
+          animation: fadeIn 2s ease;
+          display: none;
+      }
+      @keyframes fadeIn {
+          from { opacity: 0; transform: translateY(20px); }
+          to { opacity: 1; transform: translateY(0); }
+      }
+      h1 {
+          margin-top: 0;
+          color: #420ea2;
+      }
+      p {
+          font-size:1.1em;
+          line-height: 1.6;
+      }
+      select, button {
+          width: 100%;
+          padding: 12px;
+          margin: 10px ;
+          font-size: 1em;
+          border-radius: 8px;
+          border: 1px solid #ccc;
+          transition: border-color 0.3s ease;
+      }
+      select:focus, button:focus {
+          outline: none;
+          border-color: #6A5ACD;
+      }
+      button {
+          background-color: #6A5ACD;
+          color: white;
+          cursor: pointer;
+          border: none;
+      }
+      button:hover {
+          background-color: #9370DB;
+      }
+      .result {
+          margin-top: 20px;
+          font-size: 1.3em;
+          font-weight: bold;
+          color: #302b4e;
+      }
+      footer {
+          position: fixed;
+          left: 0;
+          bottom: 0;
+          width: 100%;
+          padding:0;
+          background-color: #7494aa;
+          color: white;
+          text-align: center;
+          font-size: 0.9e;
+      }
+      img {
+          max-width: 100%;
+          border-radius: 12px;
+          margin-top: 20px;
+      }
+  </style>
+</head>
+<body>
+  <div class="navbar">
+      <a data-target="home">Home</a>
+      <a data-target="about">About</a>
+      <a data-target="finder">Gift Finder</a>
+      <a data-target="contact">Contact</a>
+  </div>
+  
+  <div class="home" id="home">
+      <h1>Welcome to Our Personalized Gift Finder!!😍</h1>
+      <p>Discover the perfect gift with ease. Our platform uses smart recommendations to match your loved ones with unique and thoughtful gifts, making every occasion unforgettable.</p>
+      <img src="https://i.pinimg.com/564x/33/fd/d8/33fdd8c662f11ef25fbfe6c8d66d287a.jpg" alt="Gifts">
+  </div>
+  
+  <div class="about" id="about">
+      <h1>About Us :)</h1>
+      <p>Confused about what to gift to your loved one's according to the occasion,Don't worry!We are here to suggest you the the lovely gifts to your loved ones according the occasion and their intrest! At Personalized Gift Finder, we believe every gift should be as unique as the person receiving it. Our easy-to-use tool combines modern design with intelligent gift suggestions to help you celebrate life's special moments. Whether it's a birthday, anniversary, or holiday, we're here to make your gift-giving experience delightful💗.</p>
+  </div>
+  
+  <div class="container" id="finder">
+      <h1>Find the Perfect Gift</h1>
+      <p>Select an occasion and interest to get a personalized gift suggestion tailored just for you.</p>
+      <label for="occasion">Choose an Occasion:</label>
+      <select id="occasion">
+          <option value="Birthday">Birthday</option>
+          <option value="Anniversary">Anniversary</option>
+          <option value="Christmas">Christmas</option>
+          <option value="Graduation">Graduation</option>
+      </select>
+      <label for="interest">Select an Interest:</label>
+      <select id="interest">
+          <option value="Tech">Tech</option>
+          <option value="Fashion">Fashion</option>
+          <option value="Books">Books</option>
+          <option value="Fitness">Fitness</option>
+      </select>
+      <button onclick="findGift()">Find Gift</button>
+      <p class="result" id="giftResult"></p>
+  </div>
+  
+  <div class="contact" id="contact">
+      <h1>Contact Us</h1>
+      <p>Email:Giftfinder@email.com</p>
+      <p>Phone:9490630126</p>
+      <p>Address: 14/09,Kasukabe,Japan</p>
+      <p>Instagram:Gift_finderk</p>
+      <img src="https://i.pinimg.com/736x/40/c7/63/40c7635cb124319e92bf6f9546814387.jpg" alt="Contact">
+  </div>
+  
+  <footer>
+      <p>&copy; 2025 Personalized Gift Finder. All Rights Reserved.</p>
+  </footer>
+  
+  <script>
+      function hideAllSections() {
+          document.querySelectorAll('.home, .about, .container, .contact').forEach(function(section) {
+              section.style.display = 'none';
+          });
+      }
+      function showSection(id) {
+          hideAllSections();
+          document.getElementById(id).style.display = 'block';
+      }
+      document.querySelectorAll('.navbar a').forEach(function(link) {
+          link.addEventListener('click', function() {
+              const target = this.getAttribute('data-target');
+              showSection(target);
+          });
+      });
+      showSection('home');
+      function findGift() {
+          const occasion = document.getElementById("occasion").value;
+          const interest = document.getElementById("interest").value;
+          let gift = "";
+          if (occasion === "Birthday") {
+              if (interest === "Tech") gift = "Smartwatch";
+              else if (interest === "Fashion") gift = "Designer Handbag";
+              else if (interest === "Books") gift = "E-Reader";
+              else if (interest === "Fitness") gift = "Fitness Tracker";
+              else gift = "Gift Card";
+          } else if (occasion === "Anniversary") {
+              if (interest === "Tech") gift = "Wireless Earbuds";
+              else if (interest === "Fashion") gift = "Luxury Perfume";
+              else if (interest === "Books") gift = "Personalized Novel";
+              else if (interest === "Fitness") gift = "Spa Day Package";
+              else gift = "Gift Card";
+          } else if (occasion === "Christmas") {
+              if (interest === "Tech") gift = "Noise Cancelling Headphones";
+              else if (interest === "Fashion") gift = "Cashmere Sweater";
+              else if (interest === "Books") gift = "Limited Edition Book";
+              else if (interest === "Fitness") gift = "Yoga Mat & Accessories";
+              else gift = "Gift Card";
+          } else if (occasion === "Graduation") {
+              if (interest === "Tech") gift = "Laptop";
+              else if (interest === "Fashion") gift = "Elegant Watch";
+              else if (interest === "Books") gift = "Motivational Books Bundle";
+              else if (interest === "Fitness") gift = "Gym Bag & Accessories";
+              else gift = "Gift Card";
+          } else {
+              gift = "Gift Card";
+          }
+          document.getElementById("giftResult").textContent = `Suggested Gift: ${gift}`;
+      }
+  </script>
+</body>
+</html>
